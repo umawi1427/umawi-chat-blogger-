@@ -11,10 +11,6 @@ body {
     position: relative;
 }
 
-.icon {
-    display: none !important;
-}
-
 #navbar {
     overflow: hidden;
     background-color: #b5f0ad;
@@ -325,13 +321,19 @@ main {
     margin-top: 60px;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (min-width: 1100px) {
     .icon {
         display: none !important;
     }
-    
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1100px) {
     body {
         font-size: 0.9em;
+    }
+    
+    .icon {
+        display: none !important;
     }
 
     .pagination a {
@@ -387,13 +389,13 @@ main {
     }
 }
 
-@media screen and (max-width: 1000px) {
-    .icom {
-        display: none !important;
-    }
-
+@media screen and (min-width: 900px) and (max-width: 1000px) {
     body {
         font-size: 0.75em;
+    }
+    
+    .icon {
+        display: none !important;
     }
 
     .pagination a {
@@ -449,13 +451,13 @@ main {
     }
 }
 
-@media screen and (max-width: 900px) {
-    .icom {
-        display: none !important;
-    }
-    
+@media screen and (min-width: 840px) and (max-width: 900px) {
     body {
         font-size: 0.67em;
+    }
+    
+    .icon {
+        display: none !important;
     }
 
     .pagination a {
@@ -511,13 +513,13 @@ main {
     }
 }
 
-@media screen and (max-width: 840px) {
-    .icom {
-        display: none !important;
-    }
-    
+@media screen and (min-width: 773px) and (max-width: 840px) {
     body {
         font-size: 0.6em;
+    }
+    
+    .icon {
+        display: none !important;
     }
 
     .pagination a {
@@ -573,13 +575,13 @@ main {
     }
 }
 
-@media screen and (max-width: 773px) {
-    .icom {
-        display: none !important;
-    }
-    
+@media screen and (min-width: 720px) and (max-width: 773px) {
     body {
         font-size: 0.5em;
+    }
+    
+    .icon {
+        display: none !important;
     }
 
     .pagination a {
@@ -640,13 +642,13 @@ main {
     }
 }
 
-@media screen and (max-width: 720px) {
-    .icom {
-        display: none !important;
-    }
-    
+@media screen and (min-width: 665px) and (max-width: 720px) {
     body {
         font-size: 0.45em;
+    }
+    
+    .icon {
+        display: none !important;
     }
 
     .pagination a {
@@ -707,13 +709,13 @@ main {
     }
 }
 
-@media screen and (max-width: 665px) {
-    .icom {
-        display: none !important;
-    }
-    
+@media screen and (min-width: 610px) and (max-width: 665px) {
     body {
         font-size: 0.4em;
+    }
+    
+    .icon {
+        display: none !important;
     }
 
     .pagination a {
@@ -774,13 +776,13 @@ main {
     }
 }
 
-@media screen and (max-width: 610px) {
-    .icom {
-        display: none !important;
-    }
-    
+@media screen and (min-width: 560px) and (max-width: 610px) {
     body {
         font-size: 0.35em;
+    }
+    
+    .icon {
+        display: none !important;
     }
 
     .pagination a {
@@ -841,13 +843,13 @@ main {
     }
 }
 
-@media screen and (max-width: 560px) {
-    .icom {
-        display: none !important;
-    }
-    
+@media screen and (min-width: 537px) and (max-width: 560px) {
     body {
         font-size: 0.3em;
+    }
+    
+    .icon {
+        display: none !important;
     }
 
     .pagination a {
@@ -1040,6 +1042,31 @@ main {
 
     .h2 {
         font-size: 0.3em;
+    }
+    
+    #navbar a:not(:first-child) {
+        display: none;
+    }
+            
+    #navbar a.icon {
+        float: right;
+        display: block;
+    }
+    
+    #navbar.responsive {
+        position: relative;
+    }
+            
+    #navbar.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    #navbar.responsive a {
+        float: none;
+        display: block;
+        text-align: center;
     }
 }
 
