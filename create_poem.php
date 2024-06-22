@@ -47,97 +47,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $poemContent = <<<HTML
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="style/style.css">
-        <link rel="icon" type="image/jpg" href="images/homepageIcon.png">
-        <link id="dark-mode-stylesheet" rel="stylesheet" href="styles-dark.css" disabled>
-        <title>أبو الحكم الأموي</title>
-    </head>
-    <body>
-        <nav id="navbar">
-            <a href="umawi.php"><img id="imgIcon" src="images/homepageIcon.png"></a>
-            <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
-        <div id="nav-links">
-            <a href="index.php">الصفحة الرئيسية</a>
-            <a href="poems.php" class="active">الأشعار</a>
-            <a href="books.php">الرسائل</a>
-            <a href="bidaa.php">رؤوس الضلالة</a>
-            <a href="downloads.php">مركز التنزيلات</a>
-            <a href="chat.php">الملتقى</a>
-            <div class="container">
-                <div class="counter-container">
-                    <p class="count" id="count"></p>
-                    <p class="count">الزائرون </p>
-                </div>
-                <div class="container">
-                    <section class="toggle-container" onclick="toggleDarkMode()">
-                        <div id="modeIcon" class="toggle-icon">
-                            <img style="width: 50px;" src="images/moon.png" alt="Light Mode Icon" id="iconImage">
-                        </div>
-                    </section>
-                    <script>
-                        function toggleDarkMode() {
-                            const body = document.body;
-                            const darkModeStylesheet = document.getElementById('dark-mode-stylesheet');
-                            const modeIcon = document.getElementById('iconImage');
-                            body.classList.toggle('dark-mode');
-                            darkModeStylesheet.disabled = !darkModeStylesheet.disabled;
-                            if (body.classList.contains('dark-mode')) {
-                                modeIcon.src = 'images/sun.png';
-                                modeIcon.alt = 'Dark Mode Icon';
-                            } else {
-                                modeIcon.src = 'images/moon.png';
-                                modeIcon.alt = 'Light Mode Icon';
-                            }
-                        }
-                    </script>
-            </div>
-            <div class="container">
-                <?php
-                if (isset(\$_SESSION['valid'])) {
-                    echo '<div class="container">' . "\n";
-                    echo '    <table>' . "\n";
-                    echo '        <tr>' . "\n";
-                    echo '            <td>' . "\n";
-                    echo '                <form action="home.php"><button style="width: 85px">الملف الشخصي</button></form>' . "\n";
-                    echo '            </td>' . "\n";
-                    echo '        </tr>' . "\n";
-                    echo '        <tr>' . "\n";
-                    echo '            <td>' . "\n";
-                    echo '                <form action="php/logout.php"><button style="width: 85px">تسجيل الخروج</button></form>' . "\n";
-                    echo '            </td>' . "\n";
-                    echo '        </tr>' . "\n";
-                    echo '    </table>' . "\n";
-                    echo '</div>';
-                } else {
-                    echo '<div class="container">' . "\n";
-                    echo '    <table>' . "\n";
-                    echo '        <tr>' . "\n";
-                    echo '            <td>' . "\n";
-                    echo '                <form action="login.php"><button style="width: 85px">تسجيل الدخول</button></form>' . "\n";
-                    echo '            </td>' . "\n";
-                    echo '        </tr>' . "\n";
-                    echo '        <tr>' . "\n";
-                    echo '            <td>' . "\n";
-                    echo '                <form action="register.php"><button style="width: 85px">إنشاء حساب</button></form>' . "\n";
-                    echo '            </td>' . "\n";
-                    echo '        </tr>' . "\n";
-                    echo '    </table>' . "\n";
-                    echo '</div>';
-                }
-                ?>
-            </div>
-        </nav>
-        <script src="script.js"></script>
-        <table class="poem">
-    HTML;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" type="image/jpg" href="images/homepageIcon.png">
+    <link id="dark-mode-stylesheet" rel="stylesheet" href="styles-dark.css" disabled>
+    <title>أبو الحكم الأموي</title>
+</head>
+<body>
+<nav id="navbar">
+    <a href="umawi.php"><img id="imgIcon" src="images/homepageIcon.png"></a>
+    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+    <div id="nav-links">
+        <a href="index.php">الصفحة الرئيسية</a>
+        <a href="poems.php">الأشعار</a>
+        <a href="books.php">الرسائل</a>
+        <a href="bidaa.php">رؤوس الضلالة</a>
+        <a href="downloads.php">مركز التنزيلات</a>
+        <a href="chat.php">الملتقى</a>
+        <?php if (isset(\$_SESSION['valid'])): ?>
+            <a href="home.php">الملف الشخصي</a>
+            <a href="php/logout.php">تسجيل الخروج</a>
+        <?php else: ?>
+            <a href="login.php">تسجيل الدخول</a>
+            <a href="register.php">إنشاء حساب</a>
+        <?php endif; ?>
+    </div>
+</nav>
+<script>
+    function toggleMenu() {
+        var x = document.getElementById("navbar");
+        if (x.className === "") {
+            x.className += " responsive";
+        } else {
+            x.className = "";
+        }
+    }
+</script>
+    <table class="poem">
+HTML;
 
+foreach ($parts as $part) {
+    $poemContent .= <<<HTML
+        <tr>
+            <td class="justify">{$part["part1"]}</td>
+            <td class="center">{$part["part2"]}</td>
+            <td class="justify">{$part["part3"]}</td>
+        </tr>
+HTML;
+}
+
+$poemContent .= <<<HTML
+    </table>
+    {$paginationContent}
+</body>
+</html>
+HTML;
     foreach ($parts as $part) {
         $poemContent .= <<<HTML
             <tr>
