@@ -177,83 +177,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <nav id="navbar">
+     <nav id="navbar">
         <a href="umawi.php"><img id="imgIcon" src="images/homepageIcon.png"></a>
         <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
         <div id="nav-links">
 
             <a href="index.php">الصفحة الرئيسية</a>
             <a href="poems.php">الأشعار</a>
-
             <a href="books.php">الرسائل</a>
             <a href="bidaa.php">رؤوس الضلالة</a>
             <a href="downloads.php">مركز التنزيلات</a>
             <a href="chat.php">الملتقى</a>
-
-            <div class="container">
-                <div class="counter-container">
-                    <p class="count" id="count"></p>
-                    <p class="count">الزائرون </p>
-                </div>
-                <div class="container">
-                    <section class="toggle-container" onclick="toggleDarkMode()">
-                        <div id="modeIcon" class="toggle-icon">
-                            <img style="width: 50px;" src="images/moon.png" alt="Light Mode Icon" id="iconImage">
-                        </div>
-                    </section>
-                    <script>
-                        function toggleDarkMode() {
-                            const body = document.body;
-                            const darkModeStylesheet = document.getElementById('dark-mode-stylesheet');
-                            const modeIcon = document.getElementById('iconImage');
-
-                            body.classList.toggle('dark-mode');
-                            darkModeStylesheet.disabled = !darkModeStylesheet.disabled;
-
-                            if (body.classList.contains('dark-mode')) {
-                                modeIcon.src = 'images/sun.png';
-                                modeIcon.alt = 'Dark Mode Icon';
-                            } else {
-                                modeIcon.src = 'images/moon.png';
-                                modeIcon.alt = 'Light Mode Icon';
-                            }
-                        }
-                    </script>
-                </div>
-                <?php
-                if (isset($_SESSION['valid'])) {
-                    echo '<div class="container">
-                        <table>
-                            <tr>
-                                <td>
-                                    <form action="home.php"><button class="action-button">الملف الشخصي</button></form>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <form action="php/logout.php"><button class="action-button">تسجيل الخروج</button></form>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>';
-                } else {
-                    echo '<div class="container">
-                        <table>
-                            <tr>
-                                <td>
-                                    <form action="login.php"><button class="action-button">تسجيل الدخول</button></form>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <form action="register.php"><button class="action-button">إنشاء حساب</button></form>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>';
-                }
-                ?>
+            <?php
+            if (isset($_SESSION['valid'])) {
+                echo '<a href="home.php">الملف الشخصي</a>
+                <a href="php/logout.php">تسجيل الخروج</a>';
+            } else {
+                echo '<a href="login.php">تسجيل الدخول</a>
+                <a href="register.php">إنشاء حساب</a>';
+            }
+            ?>
+        </div>
     </nav>
+    <script>
+        function toggleMenu() {
+            var x = document.getElementById("navbar");
+            if (x.className === "") {
+                x.className += " responsive";
+            } else {
+                x.className = "";
+            }
+        }
+    </script>
     <script src="script.js"></script>
 
     <?php
